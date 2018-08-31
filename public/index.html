@@ -1,0 +1,99 @@
+<!DOCUMENT html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>UN Careers</title>
+	<base href="/">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/angular-ui-notification.css">
+	<link rel="stylesheet" href="assets/css/slick.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/extra.css">
+	<link rel="stylesheet" href="assets/css/responsive.css">
+
+</head>
+
+<body ng-app="UNCareerApp" ng-controller="homeController">
+	<div class="container Top_Navigation" ng-if="showHeaderFooter">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<a class="navbar-brand d-lg-none d-xl-none" href="#">Menu</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					  aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="#">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Français</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">UN.org</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Site map</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact us</a>
+							</li>
+
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div ui-view></div>
+		<div class="row bottom-footer text-center" ng-if="showHeaderFooter">
+			<div class="col-md-12">
+				<ul>
+					<li>
+						<a href="">Home</a>
+					</li>
+					<li>
+						<a href="">Privacy notice</a>
+					</li>
+					<li>
+						<a href="">Site map</a>
+					</li>
+					<li>
+						<a href="">Fraud alert</a>
+					</li>
+					<li>
+						<a href="">Contact Us</a>
+					</li>
+				</ul>
+				<p>Copyright 2018 United Nations. All rights reserved</p>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/angular.min.js"></script>
+	<script defer src="assets/js/fontawesome.js"></script>
+	<script src="assets/js/angular-ui-router.js"></script>
+	<script src="assets/js/angular-base64-upload.js"></script>
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/slick.min.js"></script>
+	<script src="assets/js/angular-ui-notification.js"></script>
+	<script src="app/controllers/homeCtrl.js"></script>
+	<script src="app/controllers/loginCtrl.js"></script>
+	<script src="app/controllers/admin/dashboardCtrl.js"></script>
+	<script src="app/controllers/admin/userCtrl.js"></script>
+	<script src="app/controllers/admin/whatwedoCtrl.js"></script>
+	<script src="app/app.routes.js"></script>
+	<script src="app/app.js"></script>
+</body>
+
+</html>

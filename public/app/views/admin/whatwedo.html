@@ -1,0 +1,94 @@
+<div class="bg-white dashboard-container" ng-controller="WhatWeDoController">
+	<div>
+		<p class="headingforparagraph">What We Do Section<button class="btn btn-primary create-user" ng-click='createSection()'>Create
+				New Section</button><a ui-sref='adminDashboard' class="btn btn-default create-user">Dashboard</a></p>
+	</div>
+	<!-- <table class="table" ng-if='userList.length'>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Display Name</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Last Login Time</th>
+            <th>Created At</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>         
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in userList">
+            <td>{{user.username}}</td>
+            <td>{{user.displayName}}</td>
+            <td>{{user.roles.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.lastLoginTime}}</td>
+            <td>{{user.createdAt | date : 'medium'}}</td>
+            <td class='tabledata' ng-click='editUser(user)'>
+              <i class="fas fa-user-edit"></i>
+            </td>
+            <td class='tabledata' ng-click="deleteUser(user)">
+              <i class="far fa-trash-alt"></i>
+            </td>
+          </tr>
+        </tbody>
+    </table> -->
+	<div class="modal fade" id="sectionCreateModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5>Create Section</h5>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="heading">Heading</label>
+							<input type="text" class="form-control" id="heading" ng-model='heading'>
+						</div>
+						<div class="form-group">
+							<label for="description">Select the type of description</label>
+							<div class="description-type">
+								<input type="radio" id="description" ng-model='descriptionType' value="Text">Text
+								<input type="radio" class="description-radio" id="description" ng-model='descriptionType' value="Image">Image
+								<input type="radio" class="description-radio" id="description" ng-model='descriptionType' value="Video">Video
+							</div>
+							<textarea ng-show="descriptionType==='Text'" ng-model='description' class="form-control"></textarea>
+							<input ng-show="descriptionType==='Video' || descriptionType==='Image'" type="file" class="form-control" accept="video/*" ng-model='file' base-sixty-four-input>
+						</div>
+						<div class="form-group">
+								<label for="sequence">Sequence</label>
+								<input type="number" class="form-control" id="sequence" ng-model='sequence' required>
+							</div>
+						<div class="form-group">
+							<label for="alignment">Alignment</label>
+							<div class="description-type">
+									<input type="radio" id="alignment" ng-model='alignment' value="Top">Top
+									<input type="radio" class="alignment-radio" id="alignment" ng-model='alignment' value="Bottom">Bottom
+									<input type="radio" class="alignment-radio" id="alignment" ng-model='alignment' value="Left">Left
+									<input type="radio" class="alignment-radio" id="alignment" ng-model='alignment' value="Right">Right
+								</div>
+						</div>
+						<div class="form-group">
+							<label for="language">Language</label>
+							<div class="description-type">
+									<input type="radio" id="language" ng-model='language' value="English">English
+									<input type="radio" class="language-radio" id="language" ng-model='language' value="French">French
+								</div>
+						</div>
+						<div class="form-group">
+								<label for="active">Active</label>
+								<div class="description-type">
+										<input type="radio" id="active" ng-model='isDeleted' value=true>Active
+										<input type="radio" class="language-radio" id="active" ng-model='isDeleted' value=false>InActive
+									</div>
+							</div>
+						<div class="modalbutton">
+							<button type="submit" class="btn btn-primary" ng-click="saveSection()">Create Section</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

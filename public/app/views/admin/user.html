@@ -1,0 +1,121 @@
+<div ng-controller="userController" ng-init='userInit()'>
+  <div>
+    <p class="headingforparagraph">User List <button class="btn btn-primary create-user" ng-click='createUser()'>Create New User</button><a ui-sref='adminDashboard' class="btn btn-default create-user" >Dashboard</a></p>
+  </div>
+  <table class="table" ng-if='userList.length'>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Display Name</th>
+        <th>Role</th>
+        <th>Email</th>
+        <th>Last Login Time</th>
+        <th>Created At</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>         
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in userList">
+        <td>{{user.username}}</td>
+        <td>{{user.displayName}}</td>
+        <td>{{user.roles.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.lastLoginTime}}</td>
+        <td>{{user.createdAt | date : 'medium'}}</td>
+        <td class='tabledata' ng-click='editUser(user)'>
+          <i class="fas fa-user-edit"></i>
+        </td>
+        <td class='tabledata' ng-click="deleteUser(user)">
+          <i class="far fa-trash-alt"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 ng-if='!userList.length'> No Users Found </h4>
+
+  <div class="modal fade" id="userEditModal" role="dialog" ng-if='updatedData'>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Update User</h5>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="Username">UserName</label>
+              <input type="text" class="form-control" id="Username" ng-model='updatedData.username'>
+            </div>
+            <div class="form-group">
+              <label for="DisplayName">Display Name</label>
+              <input type="text" class="form-control" id="DisplayName" ng-model='updatedData.displayName'>
+            </div>
+            <div class="form-group">
+              <label for="role">Roles</label>
+
+              <div class="form-inline" ng-if='!showRoleList'>
+                <input type="text" class="form-control" id="role" ng-model='updatedData.roles.name' disabled>
+                <a class='changeRole' ng-click="changeRole()">Change</a>
+              </div>
+              <select class="form-control" ng-model="selectedRole" ng-show='showRoleList'>
+                <option value="" disabled>Select Role</option>
+                <option ng-repeat="role in roles" value="{{role}}">{{role.name}}</option>
+              </select>
+
+            </div>
+            <div class="form-group">
+              <label for="Email">Email</label>
+              <input type="email" class="form-control" id="Email" ng-model='updatedData.email'>
+            </div>
+            <div class="modalbutton">
+              <button type="submit" class="btn btn-primary" ng-click="updateUser(updatedData, selectedRole)">Update User</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="userCreateModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5>Create User</h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="Username">UserName</label>
+                <input type="text" class="form-control" id="Username" ng-model='username' required>
+              </div>
+              <div class="form-group">
+                <label for="DisplayName">Display Name</label>
+                <input type="text" class="form-control" id="DisplayName" ng-model='displayName' required>
+              </div>
+              <div class="form-group">
+                <label for="role">Roles</label>
+                <select class="form-control" ng-model="selectedRole">
+                  <option value="" disabled>Select Role</option>
+                  <option ng-repeat="role in roles" value="{{role}}">{{role.name}}</option>
+                </select>
+  
+              </div>
+              <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" ng-model='email' required>
+              </div>
+              <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" ng-model='password' required>
+              </div>
+              <div class="modalbutton">
+                <button type="submit" class="btn btn-primary" ng-click="saveUser(selectedRole)">Create User</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
