@@ -1,4 +1,4 @@
-var adminCtrl = require('../controllers/adminRegController');
+var adminCtrl = require('../controllers/adminController');
 
 module.exports = function (router) {
     router.route('/signup')
@@ -13,5 +13,9 @@ module.exports = function (router) {
         .get(adminCtrl.fetchRoles);
     router.route('/saveWhatWeDo')
         .post(adminCtrl.createWhatWeDo)
+    router.route('/getSectionForWhatWeDo')
+        .get(adminCtrl.fetchWhatWeDo)
+    router.route('/updateSectionWhatWeDo/:section_id')
+        .put(adminCtrl.updateWhatToDo)
         
 }

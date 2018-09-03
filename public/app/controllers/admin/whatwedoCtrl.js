@@ -1,19 +1,12 @@
 angular.module('whatwedoCtrl', [])
-	.controller('WhatWeDoController', ['$scope', '$http', 'Notification', function ($scope, $http, Notification) {
+	.controller('WhatWeDoController', ['$scope', '$http', 'Notification', '$sce', '$location', function ($scope, $http, Notification, $sce, $location) {
 
+        $scope.baseUrl = `${$location.protocol()}://${$location.host()}:${$location.port()}/`;
         $scope.createSection = function() {
-            $('#sectionCreateModal').modal('show');
+            $('#sectionCreateModal').modal({backdrop: 'static'});
         }
 
         $scope.saveSection = function() {
-            console.log("**********heading*************",$scope.heading);
-            console.log("***********descriptionType************",$scope.descriptionType);
-            console.log("*******description****************",$scope.description)
-            console.log("*********bannerImage**************",$scope.file)
-            console.log("**********sequence*************",$scope.sequence)
-            console.log("*************alignment**********",$scope.alignment)
-            console.log("*************language**********",$scope.language)
-            console.log("***********isDeleted************",$scope.isDeleted)
             if($scope.descriptionType=='Image' || $scope.descriptionType=='Video'){
                 if(!$scope.file){
                     Notification.error('Please upload file')
@@ -31,23 +24,47 @@ angular.module('whatwedoCtrl', [])
                 alignment: $scope.alignment,
                 descriptionType: $scope.descriptionType,
                 language: $scope.language,
-                isDeleted: $scope.language
+                isDeleted: $scope.isDeleted
             }
             $http.post('/saveWhatWeDo',data).then((data) => {
-
+                Notification.success('Section successfully created');
+                $('#sectionCreateModal').modal('hide');
+                $scope.whatwedoInit();
             }).catch((error) => {
                 Notification.error(error.data);
             })
+        };
+
+        $scope.whatwedoInit = function(){
+            $scope.showMediaChange = false;
+            $http.get('/getSectionForWhatWeDo').then((sections)=>{
+                $scope.allSection = sections.data;
+            }).catch((error)=>{
+                $scope.allSection = [];
+                Notification.error(error.data);
+            })
+        };
+
+        $scope.returnDescription = function(html) {
+            return $sce.trustAsHtml(html);
+        };
+
+        $scope.editSection = function(section){
+            $scope.sectionData = section;
+            $('#sectionUpdateModal').modal({backdrop: 'static'});
+        };
+
+        $scope.changeMedia = function(){
+            $scope.showMediaChange = true;
         }
 
-        // $scope.getBaseUrl = function()  {
-        //     var file    = document.querySelector('input[type=file]')['files'][0];
-        //     var reader  = new FileReader();
-        //     var baseString;
-        //     reader.onloadend = function () {
-        //         baseString = reader.result;
-        //     };
-        //     console.log(baseString); 
-        //     $scope.bannerImage = baseString;
-        // }
+        $scope.updateSection = function(){
+            $http.put(`/updateSectionWhatWeDo/${$scope.sectionData._id}` , $scope.sectionData).then(()=>{
+                $('#sectionUpdateModal').modal('hide');
+                Notification.success('Section updated successfully');
+                $scope.whatwedoInit();
+            }).catch((error)=>{
+                Notification.error(error.data);
+            })
+        }
     }])

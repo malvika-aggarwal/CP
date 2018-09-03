@@ -10,7 +10,8 @@ var WhatWeDoSchema = new Schema({
     },
     sequence: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     alignment: {
         type: String,
