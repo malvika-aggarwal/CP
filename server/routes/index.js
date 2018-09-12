@@ -2,5 +2,6 @@
 module.exports = function (router) {
     return {
         adminRoutes: require('./adminRoutes')(router),
+        publicRoutes: require('./publicRoutes')(router),
     };
 }

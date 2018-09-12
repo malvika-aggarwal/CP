@@ -1,0 +1,109 @@
+<div class="bg-white dashboard-container" ng-controller="WhatWeDoController" ng-init='whatwedoGoalsInit()'>
+  <div>
+    <p class="headingforparagraph">What We Do Goals<button class="btn btn-primary create-user" ng-click='createGoals()'>Create
+        New Goal</button><a class="btn btn-primary create-user white-text" ui-sref='adminWhatWeDo'>What We Do
+        Page</a><a ui-sref='adminDashboard' class="btn btn-default create-user">Dashboard</a></p>
+  </div>
+  <table class="table" ng-if='allGoals.length'>
+    <thead>
+      <tr>
+        <th>Sequence</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Language</th>
+        <th>Active</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="goal in allGoals">
+        <td ng-bind="goal.sequence"></td>
+        <td ng-bind-html="returnDescription(goal.title)"></td>
+        <td ng-bind-html="returnDescription(goal.description)"></td>
+        <td ng-bind="goal.language"></td>
+        <td>{{ goal.isDeleted ? 'False' : 'True' }}</td>
+        <td><span ng-click="editGoal(goal)"><i class="far fa-edit tabledata"></i></span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="modal fade" id="goalCreateModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Create Goal</h5>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="sequence">Sequence</label>
+              <input type="number" class="form-control" id="sequence" ng-model='sequence'>
+            </div>
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" ng-model='title' required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea ng-model='description' class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="language">Language</label>
+              <div class="description-type">
+                <input type="radio" id="language" ng-model='language' value="English">English
+                <input type="radio" class="language-radio" id="language" ng-model='language' value="French">French
+              </div>
+            </div>
+            <div class="modalbutton">
+              <button type="submit" class="btn btn-primary" ng-click="saveGoal()">Create Goal</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="goalUpdateModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Update Goal</h5>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="sequence">Sequence</label>
+              <input type="number" class="form-control" id="sequence" ng-model='goalData.sequence' required>
+            </div>
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" ng-model='goalData.title' required>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" ng-model="goalData.description" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="language">Language</label>
+              <div class="description-type">
+                <input class="form-control" type="text" ng-model='goalData.language' ng-readonly="true">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="active">Active</label>
+              <div class="description-type">
+                <input type="radio" id="active" ng-model='goalData.isDeleted' ng-value=false>Active
+                <input type="radio" class="language-radio" id="active" ng-model='goalData.isDeleted' ng-value=true>InActive
+              </div>
+            </div>
+            <div class="modalbutton">
+              <button type="submit" class="btn btn-primary" ng-click="updateGoal()">Update Goal</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

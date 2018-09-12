@@ -370,6 +370,11 @@ textarea:-ms-input-placeholder {
 .create-user {
     float: right;
     cursor: pointer;
+    margin: 10px;
+}
+
+.white-text {
+    color: #fff !important;
 }
 
 .headingforparagraph {
@@ -395,4 +400,50 @@ textarea:-ms-input-placeholder {
 
 .language-radio {
     margin-left: 11%;
+}
+
+p {
+    word-spacing: 5px;
+}
+
+.leftcol {
+    float: left;
+    clear: none;
+    padding-right: 40px;
+}
+
+.ImportantList {
+    margin: 0 0 13px;
+}
+.ImportantList li {
+    color: #828689 !important;
+    font-size: 14px;
+    list-style-type: none;
+    display: flex;
+}
+.ImportantList li .goalItem {
+    width: 8%;
+}
+
+.ImportantList li .subItem {
+    padding-left: 65px;
+    width: 800px;
+}
+
+.SectionHead, .SectionHead span, p.SectionHead {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #6999C9 !important;
+    font-size: 17px !important;
+}
+
+#UNEntities {
+    margin: 0;
+    padding: 0;
+    color: #6999C9 !important;
+    cursor: pointer;
+}
+
+.entitymodal {
+    text-decoration: none !important;
 }

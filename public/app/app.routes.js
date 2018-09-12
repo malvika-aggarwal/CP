@@ -11,13 +11,13 @@ angular.module('app.routes', ['ui.router', 'ui-notification'])
         url: '/admin/login',
         templateUrl: '/app/views/admin/login.html'
       })
-      .state('adminSignup', {
-        url: '/admin/signup',
-        templateUrl: '/app/views/admin/signup.html'
-      })
       .state('adminDashboard', {
         url: '/admin/dashboard',
         templateUrl: '/app/views/admin/dashboard.html'
+      })
+      .state('adminGallery', {
+        url: '/admin/gallery',
+        templateUrl: '/app/views/admin/galleryMaintainance.html'
       })
       .state('adminUsers', {
         url: '/admin/users',
@@ -30,6 +30,14 @@ angular.module('app.routes', ['ui.router', 'ui-notification'])
       .state('adminWhatWeDo', {
         url: '/admin/whatwedo',
         templateUrl: '/app/views/admin/whatwedo.html'
+      })
+      .state('whatwedo', {
+        url: '/whatwedo?lang',
+        templateUrl: '/app/views/whatwedo.html'
+      })
+      .state('adminWhatWeDoGoals', {
+        url: '/admin/whatwedo/goals',
+        templateUrl: '/app/views/admin/whatwedogoals.html'
       })
     $locationProvider.html5Mode(true);
   })

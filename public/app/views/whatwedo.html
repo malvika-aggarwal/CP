@@ -1,0 +1,111 @@
+<div  ng-controller="WhatWeDoController" ng-init='whatwedoUserInit()'>
+  <div class="row">
+    <div class="col-md-12 Inner-Banner">
+      <img ng-src="{{bannerData.description}}" class="full-image">
+    </div>
+
+    <div class="inner-cont-box col-md-12">
+      <div class="per-info-mainbox">
+        <div class="per-info-mainbox-border" ng-if='leftData.length'>
+          <ul>
+            <li ng-repeat="data in leftData track by data.sequence">
+              <span ng-show="data.descriptionType=='Text'" ng-bind-html="returnDescription(data.description)"></span>
+              <span ng-show="data.descriptionType=='Video'">
+                <p><a href='{{baseUrl}}{{data.description}}' target="_blank"><video ng-src="{{data.description}}" width="200px"></video></a></p>
+              </span>
+              <span ng-show="data.descriptionType=='Image'">
+                <p><a href='{{baseUrl}}{{data.description}}' target="_blank"><img ng-src="{{data.description}}" width="200px"/></a></p>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="noborder-mainbox" ng-if='leftBottomData.length'>
+          <p class="text-center" ng-repeat="data in leftBottomData track by data.sequence">
+            <a href="https://www.un.org/sustainabledevelopment/" target="_blank">
+            <img ng-show="data.descriptionType==='Image'" ng-src="{{data.description}}" width="150px" />
+            <video ng-show="data.descriptionType==='Video'" ng-src="{{data.description}}" width="150px"></video>
+            <p ng-show="data.descriptionType==='Text'" ng-bind-html="returnDescription(data.description)"></p>
+          </a>
+          </p>
+        </div>
+      </div>
+      <div class="per- content-mainbox clearfix">
+          <span ng-repeat="data in topData track by data.sequence">
+            <span ng-bind-html="returnDescription(data.description)"></span>
+            <br>
+          </span>
+        <div class="leftcol" ng-if='goals.length'>
+          <p>{{currentLanguage=='English' ? 'The '+ goals.length +' Goals are:' : 'Les '+ goals.length +' objectifs sont les suivants :'}}</p>
+          <ul class="ImportantList">
+            <li ng-repeat="goal in goals track by goal.sequence">
+              <div class="goalItem">{{goal.title}}</div>
+              <div class="subItem"> {{goal.description}}</div>
+            </li>
+          </ul>
+        </div>
+        <span ng-repeat='data in bottomData track by data.sequence' >
+          <span ng-if="data.descriptionType=='Text'" ng-bind-html="returnDescription(data.description)"></span>
+          <p class="text-center" ng-if="data.descriptionType!=='Text'">
+            <img ng-show="data.descriptionType==='Image'" ng-src="{{data.description}}" width="250px" />
+            <video ng-show="data.descriptionType==='Video'" ng-src="{{data.description}}" width="250px"></video>
+          </p>
+        </span>
+      </div>
+      <div id="UNEntities">
+          <a ng-click="openEntities()">Links to other UN system employment pages</a>
+      </div>
+    </div>
+    <div ng-include="'/app/views/sections.html'"></div>
+    <div class="modal fade" id="entitiesModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <form>
+                <div class="modalbutton">
+                  <div class="col-md-12 inner-footer-links">
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <ul class="career-column">
+                                <li><img ng-src/><a class="entitymodal" href="">Who we are</a></li>
+                                <li><a href="">What we do</a></li>
+                                <li><a href="">Where we are</a></li>
+                                <li><a href="">Career support</a></li>
+                                <li><a href="">Pay and benefits</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-md-4">
+                            <ul class="career-column">
+                                <li><a href="">What we look for</a></li>
+                                <li><a href="">Job Networks</a></li>
+                                <li><a href="">Career paths</a></li>
+                                <li><a href="">Working in the field</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-md-4">
+                            <ul class="career-column">
+                                <li><a href="">Staff categories</a></li>
+                                <li><a href="">Young professionals programme</a></li>
+                                <li><a href="">Competitive examinations for language professionals</a></li>
+                                <li><a href="">Global General Service Test</a></li>
+                                <li><a href="">Junior Professional Officer Programme</a></li>
+                                <li><a href="">Volunteer programme</a></li>
+                                <li><a href="">Internship programme</a></li>
+                                <li><a href="">Temporary jobs</a></li>
+                                <li><a href="">Consultants</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

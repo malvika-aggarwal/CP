@@ -1,0 +1,121 @@
+<div class="bg-white dashboard-container" ng-controller="galleryController" ng-init='galleryInit()'>
+    <div>
+        <p class="headingforparagraph"><a ui-sref='adminDashboard' class="btn btn-default create-user">Dashboard</a><button ng-click='createGallery()' class="btn btn-primary create-user">Add Image/Video</button></p>
+    </div>
+    <table class="table" ng-if='allMedia.length'>
+        <thead>
+            <tr>
+                <th>FileType</th>
+                <th>FileName</th>
+                <th>Description</th>
+                <th>FileUrl</th>
+                <th>Language</th>
+                <th>Active</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="media in allMedia">
+                <td >{{media.fileType}}</td>
+                <td >{{media.fileName}}</td>
+                <td >{{media.description}}</td>
+                <td >
+                    <img ng-if="media.fileType==='Image'" ng-src="{{media.fileUrl}}" width="50px">
+                    <video ng-if="media.fileType==='Video'" ng-src="{{media.fileUrl}}" width="50px" controls></video>
+                </td>
+                <td >{{media.language}}</td>
+                <td>{{ goal.isDeleted ? 'False' : 'True' }}</td>
+                <td><span ng-click="editGallery(media)"><i class="far fa-edit tabledata"></i></span></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" id="createGalleryModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Add Image/Video</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <div class="description-type">
+                                <input type="radio" id="language" ng-model='language' value="English">English
+                                <input type="radio" class="language-radio" id="language" ng-model='language' value="French">French
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="filetype">Select the type of gallery</label>
+                            <div class="description-type">
+                                <input type="radio" id="filetype" ng-model='fileType' value="Image">Image
+                                <input type="radio" class="language-radio" id="filetype" ng-model='fileType' value="Video">Video
+                            </div>
+                            <input ng-show="fileType==='Image'" type="file" class="form-control" ng-model='file' accept="image/*" base-sixty-four-input />
+                            <input ng-show="fileType==='Video'" type="file" class="form-control" ng-model='file' accept="video/*" base-sixty-four-input />
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" ng-model='description'>
+                        </div>
+                        <div class="form-group">
+                            <label for="active">Active</label>
+                            <div class="description-type">
+                                <input type="radio" id="active" ng-model='isDeleted' value=false>Active
+                                <input type="radio" class="language-radio" id="active" ng-model='isDeleted' value=true>InActive
+                            </div>
+                        </div>
+                        <div class="modalbutton">
+                            <button type="submit" class="btn btn-primary" ng-click="addGallery()">Create Section</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateGalleryModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Update Image/Video</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <div class="description-type">
+                                <input type="radio" id="language" ng-model='galleryData.language' value="{{galleryData.language}}" >{{galleryData.language}}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="filetype">Type of gallery</label>
+                            <div class="description-type">
+                                <input type="radio" id="filetype" ng-model='galleryData.fileType' value="{{galleryData.fileType}}" > {{ galleryData.fileType }}
+                            </div>
+                            <img ng-if="galleryData.fileType=='Image'" ng-src="{{galleryData.fileUrl}}" width="100px"/>
+                            <video ng-if="galleryData.fileType=='Video'" ng-src="{{galleryData.fileUrl}}" width="100px"></video>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" ng-model='galleryData.description'>
+                        </div>
+                        <div class="form-group">
+                            <label for="active">Active</label>
+                            <div class="description-type">
+                                <input type="radio" id="active" ng-model='galleryData.isDeleted' ng-value=false>Active
+                                <input type="radio" class="language-radio" id="active" ng-model='galleryData.isDeleted' ng-value=true>InActive
+                            </div>
+                        </div>
+                        <div class="modalbutton">
+                            <button type="submit" class="btn btn-primary" ng-click="updateGallery()">Create Section</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

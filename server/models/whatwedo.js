@@ -11,11 +11,10 @@ var WhatWeDoSchema = new Schema({
     sequence: {
         type: Number,
         required: true,
-        unique: true
     },
     alignment: {
         type: String,
-        enum: ['Left','Right','Top','Bottom'],
+        enum: ['Left','Top','Bottom','LeftBottom'],
         default: 'Left'
     },
     descriptionType: {
@@ -33,6 +32,9 @@ var WhatWeDoSchema = new Schema({
 		default: false
 	}
 });
+
+
+WhatWeDoSchema.index({ "sequence": 1, "language": 1, "isDeleted":1}, { "unique": true });
 
 
 module.exports = mongoose.model('WhatWeDo', WhatWeDoSchema);

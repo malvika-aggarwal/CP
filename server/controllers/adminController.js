@@ -1,10 +1,12 @@
 var user = require('../models/user');
+var gallery = require('../models/gallery');
 var roles = require('../models/roles');
 var whatwedo = require('../models/whatwedo');
 var Cryptr = require('cryptr');
 var { secretKey } = require('../config');
 var cryptr = new Cryptr(secretKey);
 var helper = require('../generic/helper');
+var goals = require('../models/goals');
 
 exports.signUp = (req, res) => {
 	var encryptedPassword = cryptr.encrypt(req.body.password);
@@ -40,6 +42,50 @@ exports.logIn = (req, res) => {
 	});
 };
 
+exports.saveGallery = async(req, res) => {
+	var data = await helper.createMedia(req.body.file);
+	req.body.fileUrl = data.filePath;
+	req.body.fileName = data.filename;
+	var json = new gallery(req.body);
+	json.save((err,data)=>{
+		if(err){
+			res.status(500).send(err.toString());
+		}else{
+			res.status(200).json(data);
+		}
+	});
+};
+
+exports.fetchGallery = (req, res) => {
+	gallery.find().exec((err, gallery)=>{
+		if(err){
+			res.status(500).send(err.toString());
+		}else{
+			res.status(200).json(gallery);
+		}
+	})
+};
+
+exports.updateGallery = (req,res) => {
+	gallery.update({_id:req.params.gallery_id}, req.body).exec((error,gallery) => {
+		if(error){
+			res.status(500).send(error.toString());
+		}else{
+			res.status(200).json(gallery);
+		}
+	})
+};
+
+exports.getParticularGallery = (req, res) => {
+	gallery.find({fileType:req.params.type, language:req.params.language, isDeleted:false}).exec((err, gallery)=>{
+		if(err){
+			res.status(500).send(err.toString());
+		}else{
+			res.status(200).json(gallery);
+		}
+	});
+};
+
 exports.fetchRoles = (req, res) => {
 	roles.find({ is_deleted: false }).exec((err,roles) => {
 		if(err){
@@ -71,10 +117,6 @@ exports.updateUser = (req,res) => {
 };
 
 exports.createWhatWeDo = async(req, res) => {
-	if(req.body.descriptionType=='Image' || req.body.descriptionType=='Video'){
-		req.body.description = await helper.createMedia(req.body.file);
-		delete req.body.file;
-	}
 	var json = new whatwedo(req.body);
 	json.save((err,data)=>{
 		if(err){
@@ -95,12 +137,7 @@ exports.fetchWhatWeDo = (req,res) => {
 	})
 };
 
-exports.updateWhatToDo = async (req,res) => {
-	if((req.body.descriptionType=='Image' || req.body.descriptionType=='Video') && req.body.file){
-		req.body.description = await helper.createMedia(req.body.file);
-		delete req.body.file;
-	}
-
+exports.updateWhatToDo = async (req, res) => {
 	whatwedo.update({_id:req.params.section_id}, req.body).exec((error,section) => {
 		if(error){
 			res.status(500).send(error.toString());
@@ -108,4 +145,35 @@ exports.updateWhatToDo = async (req,res) => {
 			res.status(200).json(section);
 		}
 	})
-}
+};
+
+exports.fetchWhatWeDoGoals = (req, res) => {
+	goals.find().sort('sequence').exec((error, goals) => {
+		if(error){
+			res.status(500).send(error.toString());
+		}else{
+			res.status(200).json(goals);
+		}
+	})
+};
+
+exports.createWhatWeDoGoals = (req, res) => {
+	var json = new goals(req.body);
+	json.save((err,data)=>{
+		if(err){
+			res.status(500).send(err.toString());
+		}else{
+			res.status(200).json(data);
+		}
+	})
+};
+
+exports.updateWhatWeDoGoal = (req, res) => {
+  goals.update({_id:req.params.goal_id}, req.body).exec((error,goal) => {
+		if(error){
+			res.status(500).send(error.toString());
+		}else{
+			res.status(200).json(goal);
+		}
+	})
+};
