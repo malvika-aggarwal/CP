@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"united-nations.galleries"},{"v":1,"unique":true,"key":{"fileUrl":1},"name":"fileUrl_1","ns":"united-nations.galleries","background":true},{"v":1,"unique":true,"key":{"fileName":1},"name":"fileName_1","ns":"united-nations.galleries","background":true}]}

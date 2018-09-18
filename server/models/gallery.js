@@ -23,7 +23,7 @@ var gallerySchema = new Schema({
     },
     language: {
         type: String,
-        enum: ['English','French'],
+        enum: ['English','French','Both'],
         default: 'English'
     },
 	isDeleted: {

@@ -1,0 +1,85 @@
+<div ng-controller="WhoWeAreController" ng-init='whoweareUserInit()'>
+  <div class="row">
+    <div class="col-md-12 Inner-Banner">
+      <img ng-src="{{bannerData.description}}" class="full-image">
+    </div>
+
+    <div class="inner-cont-box col-md-12 whoweare-desc">
+      <div class="per-info-mainbox">
+        <div class="per-info-xboxcontent" ng-if='leftData.length'>
+          <ul>
+            <li ng-repeat="data in leftData track by data.sequence">
+              <span ng-show="data.descriptionType=='Text'"
+                ng-bind-html="returnDescription(data.description)"></span>
+              <span ng-show="data.descriptionType=='Video'">
+                <p><a href='{{baseUrl}}{{data.description}}' target="_blank"><video
+                      ng-src="{{data.description}}" width="200px"></video></a></p>
+              </span>
+              <span ng-show="data.descriptionType=='Image'">
+                <p><a href='{{baseUrl}}{{data.description}}' target="_blank"><img
+                      ng-src="{{data.description}}" width="200px" /></a></p>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="per- content-mainbox clearfix">
+        <span ng-repeat="data in topData track by data.sequence"
+          ng-if="topData.length">
+          <span ng-if="data.descriptionType=='Text'"
+            ng-bind-html="returnDescription(data.description)">
+          </span>
+          <span ng-if="data.descriptionType=='Image'">
+            <img class="imgdet" ng-src="{{data.description}}" />
+          </span>
+          <span ng-if="data.descriptionType=='Video'">
+            <video class="imgdet" ng-src="{{data.description}}"> </video>
+          </span>
+          <br>
+        </span>
+        <div class="WWAwhitespace">
+          <div class="WWAcaption2" ng-if="leftBottomData.length">
+            <span ng-repeat="data in leftBottomData track by data.sequence">
+              <span ng-if="data.descriptionType=='Text'"
+                ng-bind-html="returnDescription(data.description)">
+              </span>
+              <span ng-if="data.descriptionType=='Image'">
+                <img class="imgdet" ng-src="{{data.description}}" />
+              </span>
+              <span ng-if="data.descriptionType=='Video'">
+                <video class="imgdet" ng-src="{{data.description}}"> </video></span>
+            </span>
+          </div>
+          <div class="WWAcaption1" ng-if="rightBottomData.length">
+            <span ng-repeat="data in rightBottomData track by data.sequence">
+              <span class='WWAPiechart' ng-if="data.descriptionType=='Text'"
+                ng-bind-html="returnDescription(data.description)">
+              </span>
+              <span ng-if="data.descriptionType=='Image'">
+                <img class="imgpie" ng-src="{{data.description}}" />
+              </span>
+              <span ng-if="data.descriptionType=='Video'">
+                <video class="imgdet" ng-src="{{data.description}}"></video></span>
+            </span>
+          </div>
+        </div>
+        <span ng-repeat="data in bottomData track by data.sequence"
+          ng-if="bottomData.length">
+          <span ng-if="data.descriptionType=='Text'"
+            ng-bind-html="returnDescription(data.description)">
+          </span>
+          <span ng-if="data.descriptionType=='Image'">
+            <img class="imgdet" ng-src="{{data.description}}" />
+          </span>
+          <span ng-if="data.descriptionType=='Video'">
+            <video class="imgdet" ng-src="{{data.description}}"> </video>
+          </span>
+          <br>
+        </span>
+      </div>
+      <br>
+    </div>
+    <div ng-include="'/app/views/sections.html'">
+    </div>
+  </div>
+</div>

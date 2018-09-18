@@ -1,20 +1,20 @@
 <div class="col-md-12">
-        <ul>
-            <li>
-                <a href="">{{currentLanguage=='English' ? 'Home' : 'Accueil'}}</a>
-            </li>
-            <li>
-                <a href="">{{currentLanguage=='English' ? 'Privacy notice' : 'Confidentialite'}}</a>
-            </li>
-            <li>
-                <a href="">{{currentLanguage=='English' ? 'Site map' : 'Plan du site'}}</a>
-            </li>
-            <li>
-                <a href="">{{currentLanguage=='English' ? 'Fraud alert' : 'Courriers frauduleux'}}</a>
-            </li>
-            <li>
-                <a href="">{{currentLanguage=='English' ? 'Contact us' : 'Contactez-nous'}}</a>
-            </li>
-        </ul>
-        <p>Copyright 2018 United Nations. All rights reserved</p>
-    </div>
+    <ul>
+        <li>
+            <a ui-sref='home({ lang: langVar })'>{{currentLanguage=='English' ? 'Home' : 'Accueil'}}</a>
+        </li>
+        <li>
+            <a href="">{{currentLanguage=='English' ? 'Privacy notice' : 'Confidentialite'}}</a>
+        </li>
+        <li>
+            <a ui-sref='sitemap({ lang: langVar })'>{{currentLanguage=='English' ? 'Site map' : 'Plan du site'}}</a>
+        </li>
+        <li>
+            <a href="">{{currentLanguage=='English' ? 'Fraud alert' : 'Courriers frauduleux'}}</a>
+        </li>
+        <li>
+            <a href="">{{currentLanguage=='English' ? 'Contact us' : 'Contactez-nous'}}</a>
+        </li>
+    </ul>
+    <p>Copyright 2018 United Nations. All rights reserved</p>
+</div>

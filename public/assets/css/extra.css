@@ -360,9 +360,11 @@ textarea:-ms-input-placeholder {
 .nav-item.dropdown {
     cursor: pointer;
 }
-.modalbutton{
+
+.modalbutton {
     float: right;
 }
+
 .tabledata {
     cursor: pointer;
 }
@@ -415,12 +417,14 @@ p {
 .ImportantList {
     margin: 0 0 13px;
 }
+
 .ImportantList li {
     color: #828689 !important;
     font-size: 14px;
     list-style-type: none;
     display: flex;
 }
+
 .ImportantList li .goalItem {
     width: 8%;
 }
@@ -430,7 +434,9 @@ p {
     width: 800px;
 }
 
-.SectionHead, .SectionHead span, p.SectionHead {
+.SectionHead,
+.SectionHead span,
+p.SectionHead {
     margin-top: 15px;
     margin-bottom: 10px;
     color: #6999C9 !important;
@@ -446,4 +452,121 @@ p {
 
 .entitymodal {
     text-decoration: none !important;
+}
+
+.fullscreen-modal {
+    max-width: 80%;
+}
+
+.UNEntitiesIcon {
+    float: left;
+    clear: none;
+    padding-right: 10px;
+}
+
+.UNEntitiesTxt {
+    width: 200px;
+    float: left;
+    clear: none;
+    padding-right: 0;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.entitylist {
+    float: left;
+}
+
+.modal-close-button {
+    float: right;
+    cursor: pointer;
+}
+
+.alignment-radio-wwa {
+    margin-left: 6%;
+}
+
+.WWAwhitespace {
+    width: 100%;
+    height: 330px;
+}
+
+.WWAcaption2 {
+    width: 50%;
+    position: relative;
+    top: -15px;
+    float: left;
+    padding: 30px 0 0 40px;
+    color: #828689;
+}
+
+.imgdet {
+    width: 242px;
+    height: 94px;
+    background-position: left;
+    padding: 10px;
+}
+
+.whowearegraph {
+    padding: 3px;
+    margin: 9px;
+}
+
+.WWAcaption3 {
+    width: 300px;
+    position: relative;
+    color: #828689 !important;
+    padding-top: 25px;
+}
+
+.whoweare-heading {
+    margin-bottom: 5%;
+}
+
+.WWAcaption1 {
+    width: 50%;
+    top: 5px;
+    float: right;
+    padding: 12px 40px 0 0;
+    color: #828689;
+}
+
+.imgpie {
+    height: 195px;
+    left: 0;
+    margin-top: 50px;
+}
+
+.per-info-xboxcontent {
+    border: 1px solid #e3e3e3;
+    border-radius: 7px;
+    padding: 10px;
+    padding: 15px;
+
+}
+
+.whoweare-desc {
+    padding-top: 10px !important;
+}
+
+.right-person-heading {
+    float: right;
+    padding-right: 27px;
+}
+
+.WWAcaption4 {
+    padding: 10px 37% 10px 5px;
+}
+
+.WWAPiechart {
+    position: absolute;
+}
+
+.WWAPieChartValues {
+    margin-top: 35%;
+}
+
+.WWABlueP {
+    color: #6999C9 !important;
+    font-weight: 400;
 }

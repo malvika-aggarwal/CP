@@ -7,5 +7,6 @@ angular.module('UNCareerApp', [
 	'loginCtrl',
 	'dashboardCtrl',
 	'userCtrl',
-	'whatwedoCtrl'
+	'whatwedoCtrl',
+	'whoweareCtrl',
 ]);

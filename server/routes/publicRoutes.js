@@ -5,4 +5,8 @@ module.exports = function (router) {
         .get(publicCtrl.fetchWhatWeDo);
     router.route('/getGoals')
         .get(publicCtrl.fetchGoals);
+    router.route('/getEntities')
+        .get(publicCtrl.fetchEntities);
+    router.route('/getWhoWeAreList')
+        .get(publicCtrl.fetchWhoWeAre)
 }

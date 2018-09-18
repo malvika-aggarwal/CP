@@ -1,5 +1,6 @@
 angular.module('homeCtrl', [])
 	.controller('homeController', ['$scope', '$location', '$rootScope', '$http', function ($scope, $location, $rootScope, $http) {
+		$scope.homeControllerVar = true;
 		$('.slider-for').slick({
 			slidesToShow: 1,
 			slidesToScroll: 1,

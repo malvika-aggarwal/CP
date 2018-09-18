@@ -1,0 +1,79 @@
+<div class="col-md-12 site-map-links">
+    <ul>
+        <li><a ui-sref='home({ lang: langVar })'>Home</a></li>
+        <li>
+            <a href="#">{{currentLanguage=='English' ? 'Why work at UN?' : 'Pourquoi travailler à l’ONU?'}} </a>
+            <ul>
+                <li><a ui-sref="whoweare({ lang: langVar })">{{currentLanguage=='English' ? 'Who we are' : 'Qui
+                        sommes-nous?'}}</a></li>
+                <li><a ui-sref='whatwedo({ lang: langVar })'>{{currentLanguage=='English' ? 'What we do' : 'Que
+                        faisons-nous?'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Where we are' : 'Où agissons-nous?'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Career support' : 'Accompagnement des carrières à
+                        l’ONU'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Pay and benefits' : 'Rémunération et prestations'}}</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">{{currentLanguage=='English' ? 'What can I do at UN?' : 'Que pourrais-je faire à l’ONU?'}}</a>
+            <ul>
+                <li><a href="">{{currentLanguage=='English' ? 'What we look for' : 'Ce que nous recherchons'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Job Networks' : 'Réseaux professionnels'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Career paths' : 'Parcours professionnels'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Working in the field' : 'Travail sur le terrain'}}</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">{{currentLanguage=='English' ? 'What are my career options?' :'Quelles sont les possibilités de
+                carrière
+                qui s’offrent à moi?'}}</a>
+            <ul>
+                <li><a href="">{{currentLanguage=='English' ? 'Staff categories' : 'Catégories
+                        de personnel'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Young professionals programme' :
+                        'Programme jeunes
+                        administrateurs'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Competitive examinations for
+                        language professionals'
+                        :
+                        'Concours de recrutement de personnel linguistique'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Global General Service Test' : '
+                        Test d’aptitude
+                        standardisé
+                        pour les services généraux'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Junior Professional Officer
+                        Programme' : 'Programme
+                        des
+                        administrateurs auxiliaires'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Volunteer programme' :
+                        'Programme de volontariat'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Internship programme' :
+                        'Programme de stages'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Temporary jobs' : 'Emplois
+                        temporaires'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Consultants' : 'Consultants'}}</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">{{currentLanguage=='English' ? 'How do I apply?' : 'Comment poser ma candidature?'}}</a>
+            <ul>
+                <li><a href="">{{currentLanguage=='English' ? 'Job openings' : 'Postes à
+                        pourvoir'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Creating your job application' :
+                        'Votre dossier de
+                        candidature'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'Application process' :
+                        'Procédure de
+                        candidatureProcédure de
+                        candidature'}}</a></li>
+                <li><a href="">{{currentLanguage=='English' ? 'At your interview' : 'À
+                        l’entretien'}}</a></li>
+            </ul>
+        </li>
+        <li><a href="#">{{currentLanguage=='English' ? 'Privacy notice' : 'Confidentialite'}}</a></li>
+        <li><a ui-sref='sitemap({ lang: langVar })'>{{currentLanguage=='English' ? 'Site map' : 'Plan du site'}}</a></li>
+        <li><a href="">{{currentLanguage=='English' ? 'Fraud alert' : 'Courriers frauduleux'}}</a></li>
+        <li><a href="">{{currentLanguage=='English' ? 'Contact us' : 'Contactez-nous'}}</a></li>
+    </ul>
+</div>
+<div ng-include="'/app/views/sections.html'"></div>

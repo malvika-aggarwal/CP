@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var WhatWeDoSchema = new Schema({
-    heading: {
-        type: String
-    },
+var WhoWeAreSchema = new Schema({
     description: {
         type: String
     },
@@ -14,7 +11,7 @@ var WhatWeDoSchema = new Schema({
     },
     alignment: {
         type: String,
-        enum: ['Left', 'Top', 'Bottom', 'LeftBottom'],
+        enum: ['Left', 'Top', 'Bottom', 'LeftBottom', 'RightBottom'],
         default: 'Left'
     },
     descriptionType: {
@@ -27,18 +24,27 @@ var WhatWeDoSchema = new Schema({
         enum: ['English', 'French'],
         default: 'English'
     },
-    isDeleted: {
+    updatedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    updatedOn: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    isActive: {
         type: Boolean,
-        default: false
+        default: true
     }
 });
 
-WhatWeDoSchema.index({
+WhoWeAreSchema.index({
     "sequence": 1,
     "language": 1,
-    "isDeleted": 1
+    "isActive": 1
 }, {
     "unique": true
 });
 
-module.exports = mongoose.model('WhatWeDo', WhatWeDoSchema);
+
+module.exports = mongoose.model('WhoWeAre', WhoWeAreSchema);

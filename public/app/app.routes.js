@@ -4,7 +4,7 @@ angular.module('app.routes', ['ui.router', 'ui-notification'])
 
     $stateProvider
       .state('home', {
-        url: '/',
+        url: '/?lang',
         templateUrl: '/app/views/home.html'
       })
       .state('adminLogin', {
@@ -39,16 +39,32 @@ angular.module('app.routes', ['ui.router', 'ui-notification'])
         url: '/admin/whatwedo/goals',
         templateUrl: '/app/views/admin/whatwedogoals.html'
       })
+      .state('adminWhatWeDoEntities', {
+        url: '/admin/whatwedo/enities',
+        templateUrl: '/app/views/admin/whatwedoentities.html'
+      })
+      .state('whoweare', {
+        url: '/whoweare?lang',
+        templateUrl: '/app/views/whoweare.html'
+      })
+      .state('sitemap', {
+        url: '/sitemap?lang',
+        templateUrl: '/app/views/sitemap.html'
+      })
+      .state('adminCareerSupport', {
+        url: '/admin/careerSupport?lang',
+        templateUrl: '/app/views/admin/careerSupport.html'
+      })
     $locationProvider.html5Mode(true);
   })
   .config(function (NotificationProvider) {
     NotificationProvider.setOptions({
-      delay: 3000,
+      delay: 5000,
       startTop: 20,
       startRight: 10,
       verticalSpacing: 20,
       horizontalSpacing: 20,
-      positionX: 'left',
-      positionY: 'bottom'
+      positionX: 'center',
+      positionY: 'top'
     });
   });

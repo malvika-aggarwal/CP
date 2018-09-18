@@ -1,7 +1,9 @@
 <div class="bg-white dashboard-container" ng-controller="WhatWeDoController" ng-init='whatwedoInit()'>
   <div>
     <p class="headingforparagraph">What We Do Section<button class="btn btn-primary create-user" ng-click='createSection()'>Create
-        New Section</button><a class="btn btn-primary create-user white-text" ui-sref='adminWhatWeDoGoals'>Go To Goals Page</a><a ui-sref='adminDashboard' class="btn btn-default create-user">Dashboard</a></p>
+        New Section</button><a class="btn btn-primary create-user white-text" ui-sref='adminWhatWeDoGoals'>Go To Goals
+        Page</a><a class="btn btn-primary create-user white-text" ui-sref='adminWhatWeDoEntities'>Go To Entities Page</a><a
+        ui-sref='adminDashboard' class="btn btn-default create-user">Dashboard</a></p>
   </div>
   <table class="table" ng-if='allSection.length'>
     <thead>
@@ -21,8 +23,9 @@
         <td ng-bind="section.sequence"></td>
         <td ng-bind-html="returnDescription(section.heading)"></td>
         <td ng-if="section.descriptionType=='Image'"><img ng-src="{{section.description}}" alt="Description" width="50px" /></td>
-        <td ng-if="section.descriptionType=='Video'"><a href='{{baseUrl}}{{section.description}}' target="_blank"><video ng-src="{{section.description}}" width="100px" alt="Video"></video></a></td>
-        <td ng-if="section.descriptionType=='Text'" ng-bind-html="returnDescription(section.description)" ></td>
+        <td ng-if="section.descriptionType=='Video'"><a href='{{baseUrl}}{{section.description}}' target="_blank"><video
+              ng-src="{{section.description}}" width="100px" alt="Video"></video></a></td>
+        <td ng-if="section.descriptionType=='Text'" ng-bind-html="returnDescription(section.description)"></td>
         <td ng-bind="section.alignment"></td>
         <td ng-bind="section.descriptionType"></td>
         <td ng-bind="section.language"></td>
@@ -43,7 +46,8 @@
               <label for="language">Language</label>
               <div class="description-type">
                 <input type="radio" id="language" ng-model='language' value="English" ng-change="changeMedia()">English
-                <input type="radio" class="language-radio" id="language" ng-model='language' value="French" ng-change="changeMedia()"> French
+                <input type="radio" class="language-radio" id="language" ng-model='language' value="French" ng-change="changeMedia()">
+                French
               </div>
             </div>
             <div class="form-group">
@@ -54,13 +58,15 @@
               <label for="description">Select the type of description</label>
               <div class="description-type">
                 <input type="radio" id="description" ng-model='descriptionType' value="Text">Text
-                <input type="radio" class="description-radio" id="description" ng-model='descriptionType' value="Image" ng-change="changeMedia()">Image
-                <input type="radio" class="description-radio" id="description" ng-model='descriptionType' value="Video" ng-change="changeMedia()">Video
+                <input type="radio" class="description-radio" id="description" ng-model='descriptionType' value="Image"
+                  ng-change="changeMedia()">Image
+                <input type="radio" class="description-radio" id="description" ng-model='descriptionType' value="Video"
+                  ng-change="changeMedia()">Video
               </div>
               <textarea ng-show="descriptionType==='Text'" ng-model='description' class="form-control"></textarea>
               <select ng-show="descriptionType==='Video' || descriptionType==='Image'" class="form-control" ng-model="selectedFile">
-                  <option value="" disabled>Select File</option>
-                  <option ng-repeat="media in allMedia" value="{{media}}">{{media.description}}</option>
+                <option value="" disabled>Select File</option>
+                <option ng-repeat="media in allMedia" value="{{media}}">{{media.description}}</option>
               </select>
             </div>
             <div class="form-group">
@@ -73,10 +79,10 @@
                 <input type="radio" id="alignment" ng-model='alignment' value="Top">Top
                 <input type="radio" class="alignment-radio" id="alignment" ng-model='alignment' value="Bottom">Bottom
                 <input type="radio" class="alignment-radio" id="alignment" ng-model='alignment' value="Left">Left
-                <input type="radio" class="alignment-radio" id="alignment" ng-model='alignment' value="LeftBottom">LeftBottom                
+                <input type="radio" class="alignment-radio" id="alignment" ng-model='alignment' value="LeftBottom">LeftBottom
               </div>
             </div>
-            
+
             <div class="form-group">
               <label for="active">Active</label>
               <div class="description-type">
@@ -102,12 +108,12 @@
         </div>
         <div class="modal-body">
           <form>
-              <div class="form-group">
-                  <label for="language">Language</label>
-                  <div class="description-type">
-                    <input class="form-control" type="text" ng-model='sectionData.language' ng-readonly="true">
-                  </div>
-                </div>
+            <div class="form-group">
+              <label for="language">Language</label>
+              <div class="description-type">
+                <input class="form-control" type="text" ng-model='sectionData.language' ng-readonly="true">
+              </div>
+            </div>
             <div class="form-group">
               <label for="heading">Heading</label>
               <input type="text" class="form-control" id="heading" ng-model='sectionData.heading'>
@@ -119,14 +125,15 @@
               </div>
               <textarea ng-show="sectionData.descriptionType==='Text'" ng-model='sectionData.description' class="form-control"></textarea>
               <span ng-show="sectionData.descriptionType==='Video' || sectionData.descriptionType==='Image'">
-                <img ng-show="sectionData.descriptionType==='Image'" ng-src="{{sectionData.description}}" alt="Description" width="100px" />
-                <video ng-show="sectionData.descriptionType==='Video'" ng-src="{{sectionData.description}}" width="200px" controls></video>
+                <img ng-show="sectionData.descriptionType==='Image'" ng-src="{{sectionData.description}}" alt="Description"
+                  width="100px" />
+                <video ng-show="sectionData.descriptionType==='Video'" ng-src="{{sectionData.description}}" width="200px"
+                  controls></video>
                 <button ng-click="changeMediaUpdate()">click here to change</button>
                 <select ng-show="showMediaChange" class="form-control" ng-model="selectedFile">
-                    <option value="" disabled>Select File</option>
-                    <option ng-repeat="media in allMedia" value="{{media}}">{{media.description}}</option>
+                  <option value="" disabled>Select File</option>
+                  <option ng-repeat="media in allMedia" value="{{media}}">{{media.description}}</option>
                 </select>
-                <!-- <input ng-show="showMediaChange" type="file" class="form-control" ng-model='sectionData.file' base-sixty-four-input /> -->
               </span>
             </div>
             <div class="form-group">
