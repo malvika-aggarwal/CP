@@ -52,8 +52,24 @@ angular.module('app.routes', ['ui.router', 'ui-notification'])
         templateUrl: '/app/views/sitemap.html'
       })
       .state('adminCareerSupport', {
-        url: '/admin/careerSupport?lang',
+        url: '/admin/careerSupport',
         templateUrl: '/app/views/admin/careerSupport.html'
+      })
+      .state('careersupport', {
+        url: '/careersupport?lang',
+        templateUrl: '/app/views/careersupport.html'
+      })
+      .state('adminPrivacyNotice', {
+        url: '/admin/privacyNotice',
+        templateUrl: '/app/views/admin/privacyNotice.html'
+      })
+      .state('privacynotice', {
+        url: '/privacynotice?lang',
+        templateUrl: '/app/views/privacynotice.html'
+      })
+      .state('adminFraudAlert', {
+        url: '/admin/fraudAlert',
+        templateUrl: '/app/views/admin/fraudAlert.html'
       })
     $locationProvider.html5Mode(true);
   })

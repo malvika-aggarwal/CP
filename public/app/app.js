@@ -9,4 +9,7 @@ angular.module('UNCareerApp', [
 	'userCtrl',
 	'whatwedoCtrl',
 	'whoweareCtrl',
+	'careersupportCtrl',
+	'privacynoticeCtrl',
+	'fraudalertCtrl'
 ]);

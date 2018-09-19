@@ -4,6 +4,9 @@ var gallery = require('../models/gallery');
 var roles = require('../models/roles');
 var whatwedo = require('../models/whatwedo');
 var whoweare = require('../models/whoweare');
+var careersupport = require('../models/careerSupport');
+var privacynotice = require('../models/privacyNotice');
+var fraudalert = require('../models/fraudAlert');
 var Cryptr = require('cryptr');
 var {
 	secretKey
@@ -273,4 +276,103 @@ exports.updateWhoWeAre = (req, res) => {
 			res.status(200).json(section);
 		}
 	})
+};
+
+exports.createCareerSupport = (req, res) => {
+	var json = new careersupport(req.body);
+	json.save((err, data) => {
+		if (err) {
+			res.status(500).send(err.toString());
+		} else {
+			res.status(200).json(data);
+		}
+	})
+};
+
+exports.fetchCareerSupport = (req, res) => {
+	careersupport.find().sort('sequence').exec((error, list) => {
+		if (error) {
+			res.status(500).send(error.toString());
+		} else {
+			res.status(200).json(list);
+		}
+	})
+};
+
+exports.updateCareerSupport = (req, res) => {
+	careersupport.update({
+		_id: req.params.section_id
+	}, req.body).exec((error, section) => {
+		if (error) {
+			res.status(500).send(error.toString());
+		} else {
+			res.status(200).json(section);
+		}
+	})
 }
+
+exports.createPrivacyNotice = (req, res) => {
+	var json = new privacynotice(req.body);
+	json.save((err, data) => {
+		if (err) {
+			res.status(500).send(err.toString());
+		} else {
+			res.status(200).json(data);
+		}
+	})
+};
+
+exports.fetchPrivacyNotice = (req, res) => {
+	privacynotice.find().sort('sequence').exec((error, list) => {
+		if (error) {
+			res.status(500).send(error.toString());
+		} else {
+			res.status(200).json(list);
+		}
+	})
+};
+
+exports.updatePrivacyNotice = (req, res) => {
+	privacynotice.update({
+		_id: req.params.section_id
+	}, req.body).exec((error, section) => {
+		if (error) {
+			res.status(500).send(error.toString());
+		} else {
+			res.status(200).json(section);
+		}
+	})
+};
+
+exports.createFraudAlert = (req, res) => {
+	var json = new fraudalert(req.body);
+	json.save((err, data) => {
+		if (err) {
+			res.status(500).send(err.toString());
+		} else {
+			res.status(200).json(data);
+		}
+	})
+};
+
+exports.fetchFraudAlert = (req, res) => {
+	fraudalert.find().sort('sequence').exec((error, list) => {
+		if (error) {
+			res.status(500).send(error.toString());
+		} else {
+			res.status(200).json(list);
+		}
+	})
+};
+
+exports.updateFraudAlert = (req, res) => {
+	fraudalert.update({
+		_id: req.params.section_id
+	}, req.body).exec((error, section) => {
+		if (error) {
+			res.status(500).send(error.toString());
+		} else {
+			res.status(200).json(section);
+		}
+	})
+};

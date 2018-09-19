@@ -58,4 +58,34 @@ module.exports = function (router) {
         .get(adminCtrl.fetchWhoWeAre)
     router.route('/updateSectionWhoWeAre/:section_id')
         .put(adminCtrl.updateWhoWeAre)
+
+    /** 
+     * Career Support Routes 
+     */
+    router.route('/saveCarrerSupport')
+        .post(adminCtrl.createCareerSupport);
+    router.route('/getSectionsForCareerSupport')
+        .get(adminCtrl.fetchCareerSupport)
+    router.route('/updateSectionCareerSupport/:section_id')
+        .put(adminCtrl.updateCareerSupport)
+
+    /** 
+     * Privacy Notice Routes 
+     */
+    router.route('/savePrivacyNotice')
+        .post(adminCtrl.createPrivacyNotice);
+    router.route('/getSectionsForPrivacyNotice')
+        .get(adminCtrl.fetchPrivacyNotice)
+    router.route('/updateSectionPrivacyNotice/:section_id')
+        .put(adminCtrl.updatePrivacyNotice)
+
+    /** 
+     * Fraud Alert Routes 
+     */
+    router.route('/saveFraudAlert')
+        .post(adminCtrl.createFraudAlert);
+    router.route('/getSectionsForFraudAlert')
+        .get(adminCtrl.fetchFraudAlert)
+    router.route('/updateSectionFraudAlert/:section_id')
+        .put(adminCtrl.updateFraudAlert)
 }

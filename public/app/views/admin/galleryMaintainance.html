@@ -1,6 +1,7 @@
 <div class="bg-white dashboard-container" ng-controller="galleryController" ng-init='galleryInit()'>
     <div>
-        <p class="headingforparagraph"><a ui-sref='adminDashboard' class="btn btn-default create-user">Dashboard</a><button ng-click='createGallery()' class="btn btn-primary create-user">Add Image/Video</button></p>
+        <p class="headingforparagraph"><a ui-sref='adminDashboard' class="btn btn-default create-user">Dashboard</a><button
+                ng-click='createGallery()' class="btn btn-primary create-user">Add Image/Video</button></p>
     </div>
     <table class="table" ng-if='allMedia.length'>
         <thead>
@@ -16,14 +17,15 @@
         </thead>
         <tbody>
             <tr ng-repeat="media in allMedia">
-                <td >{{media.fileType}}</td>
-                <td >{{media.fileName}}</td>
-                <td >{{media.description}}</td>
-                <td >
-                    <img ng-if="media.fileType==='Image'" ng-src="{{media.fileUrl}}" width="50px">
+                <td>{{media.fileType}}</td>
+                <td>{{media.fileName}}</td>
+                <td>{{media.description}}</td>
+                <td>
+                    <a href="{{media.fileUrl}}" target="_blank"> <img ng-if="media.fileType==='Image'" ng-src="{{media.fileUrl}}"
+                            width="50px" alt="Unsupported Media"></a>
                     <video ng-if="media.fileType==='Video'" ng-src="{{media.fileUrl}}" width="50px" controls></video>
                 </td>
-                <td >{{media.language}}</td>
+                <td>{{media.language}}</td>
                 <td>{{ goal.isDeleted ? 'False' : 'True' }}</td>
                 <td><span ng-click="editGallery(media)"><i class="far fa-edit tabledata"></i></span></td>
             </tr>
@@ -52,8 +54,10 @@
                                 <input type="radio" id="filetype" ng-model='fileType' value="Image">Image
                                 <input type="radio" class="language-radio" id="filetype" ng-model='fileType' value="Video">Video
                             </div>
-                            <input ng-show="fileType==='Image'" type="file" class="form-control" ng-model='file' accept="image/*" base-sixty-four-input />
-                            <input ng-show="fileType==='Video'" type="file" class="form-control" ng-model='file' accept="video/*" base-sixty-four-input />
+                            <input ng-show="fileType==='Image'" type="file" class="form-control" ng-model='file' accept="image/*"
+                                base-sixty-four-input />
+                            <input ng-show="fileType==='Video'" type="file" class="form-control" ng-model='file' accept="video/*"
+                                base-sixty-four-input />
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -87,16 +91,18 @@
                         <div class="form-group">
                             <label for="language">Language</label>
                             <div class="description-type">
-                                <input type="radio" id="language" ng-model='galleryData.language' value="{{galleryData.language}}" >{{galleryData.language}}
+                                <input type="radio" id="language" ng-model='galleryData.language' value="{{galleryData.language}}">{{galleryData.language}}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="filetype">Type of gallery</label>
                             <div class="description-type">
-                                <input type="radio" id="filetype" ng-model='galleryData.fileType' value="{{galleryData.fileType}}" > {{ galleryData.fileType }}
+                                <input type="radio" id="filetype" ng-model='galleryData.fileType' value="{{galleryData.fileType}}">
+                                {{ galleryData.fileType }}
                             </div>
-                            <img ng-if="galleryData.fileType=='Image'" ng-src="{{galleryData.fileUrl}}" width="100px"/>
+                            <img ng-if="galleryData.fileType=='Image'" ng-src="{{galleryData.fileUrl}}" width="100px"
+                                alt="Unsupported Media" />
                             <video ng-if="galleryData.fileType=='Video'" ng-src="{{galleryData.fileUrl}}" width="100px"></video>
                         </div>
                         <div class="form-group">
@@ -107,7 +113,8 @@
                             <label for="active">Active</label>
                             <div class="description-type">
                                 <input type="radio" id="active" ng-model='galleryData.isDeleted' ng-value=false>Active
-                                <input type="radio" class="language-radio" id="active" ng-model='galleryData.isDeleted' ng-value=true>InActive
+                                <input type="radio" class="language-radio" id="active" ng-model='galleryData.isDeleted'
+                                    ng-value=true>InActive
                             </div>
                         </div>
                         <div class="modalbutton">

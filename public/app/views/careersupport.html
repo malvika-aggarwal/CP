@@ -1,0 +1,58 @@
+<div ng-controller="careerSupportController" ng-init='careersupportUserInit()'>
+    <div class="row">
+        <div class="col-md-12 Inner-Banner">
+            <img ng-src="{{bannerData.description}}" class="full-image">
+        </div>
+
+        <div class="inner-cont-box col-md-12 whoweare-desc">
+            <div class="per-info-mainbox">
+                <div class="per-info-xboxcontent" ng-if='leftData.length'>
+                    <ul>
+                        <li ng-repeat="data in leftData track by data.sequence">
+                            <span ng-show="data.descriptionType=='Text'" ng-bind-html="returnDescription(data.description)"></span>
+                            <span ng-show="data.descriptionType=='Video'">
+                                <p><a href='{{baseUrl}}{{data.description}}' target="_blank"><video ng-src="{{data.description}}"
+                                            width="200px"></video></a></p>
+                            </span>
+                            <span ng-show="data.descriptionType=='Image'">
+                                <p><a href='{{baseUrl}}{{data.description}}' target="_blank"><img ng-src="{{data.description}}"
+                                            width="200px" /></a></p>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="per- content-mainbox clearfix">
+                <span ng-repeat="data in topData track by data.sequence" ng-if="topData.length">
+                    <span ng-if="data.descriptionType=='Text'" ng-bind-html="returnDescription(data.description)">
+                    </span>
+                    <span ng-if="data.descriptionType=='Image'">
+                        <img class="imgdet" ng-src="{{data.description}}" />
+                    </span>
+                    <span ng-if="data.descriptionType=='Video'">
+                        <video class="imgdet" ng-src="{{data.description}}"> </video>
+                    </span>
+                    <br>
+                </span>
+                <span ng-if="bottomData.length">
+                    <ul class="bulletlist2">
+                        <span ng-repeat="data in bottomData track by data.sequence">
+                            <li ng-if="data.descriptionType=='Text'" ng-bind-html="returnDescription(data.description)">
+                            </li>
+                            <li ng-if="data.descriptionType=='Image'">
+                                <img class="imgdet" ng-src="{{data.description}}" />
+                            </li>
+                            <li ng-if="data.descriptionType=='Video'">
+                                <video class="imgdet" ng-src="{{data.description}}"> </video>
+                            </li>
+                        </span>
+                    </ul>
+                    <br>
+                </span>
+            </div>
+            <br>
+        </div>
+        <div ng-include="'/app/views/sections.html'">
+        </div>
+    </div>
+</div>

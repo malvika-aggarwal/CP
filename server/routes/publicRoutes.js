@@ -9,4 +9,8 @@ module.exports = function (router) {
         .get(publicCtrl.fetchEntities);
     router.route('/getWhoWeAreList')
         .get(publicCtrl.fetchWhoWeAre)
+    router.route('/getCareerSupportListing')
+        .get(publicCtrl.fetchCareerSupport)
+    router.route('/getPrivacyNoticeListing')
+        .get(publicCtrl.fetchPrivacyNotice)
 }

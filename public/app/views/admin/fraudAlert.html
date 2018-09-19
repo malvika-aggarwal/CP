@@ -1,0 +1,176 @@
+<div class="bg-white dashboard-container" ng-controller="fraudAlertController" ng-init='fraudAlertInit()'>
+    <div>
+        <p class="headingforparagraph">
+            Fraud Alert Section
+            <button class="btn btn-primary create-user" ng-click='createSection()'>
+                Create Section
+            </button>
+            <a ui-sref='adminDashboard' class="btn btn-default create-user">Dashboard</a>
+        </p>
+    </div>
+    <table class="table" ng-if='allSection.length'>
+        <thead>
+            <tr>
+                <th>Sequence</th>
+                <th>Description</th>
+                <th>Alignment</th>
+                <th>Description Type</th>
+                <th>Language</th>
+                <th>UpdatedBy</th>
+                <th>UpdatedOn</th>
+                <th>Active</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="section in allSection">
+                <td ng-bind="section.sequence"></td>
+                <td ng-if="section.descriptionType=='Image'"><img ng-src="{{section.description}}" alt="Description"
+                        width="50px" /></td>
+                <td ng-if="section.descriptionType=='Video'"><a href='{{baseUrl}}{{section.description}}' target="_blank"><video
+                            ng-src="{{section.description}}" width="100px" alt="Video"></video></a></td>
+                <td ng-if="section.descriptionType=='Text'" ng-bind-html="returnDescription(section.description)"></td>
+                <td ng-bind="section.alignment"></td>
+                <td ng-bind="section.descriptionType"></td>
+                <td ng-bind="section.language"></td>
+                <td>Yet to come</td>
+                <td>Yet to come</td>
+                <td>{{ section.isActive ? 'True' : 'False' }}</td>
+                <td><span ng-click="editSection(section)"><i class="far fa-edit
+                  tabledata"></i></span></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" id="sectionCreateModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Create Section</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <div class="description-type">
+                                <input type="radio" id="language" ng-model='language' value="English" ng-change="changeMedia()">English
+                                <input type="radio" class="language-radio" id="language" ng-model='language' value="French"
+                                    ng-change="changeMedia()">
+                                French
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Select the type of description</label>
+                            <div class="description-type">
+                                <input type="radio" id="description" ng-model='descriptionType' value="Text">Text
+                                <input type="radio" class="description-radio" id="description" ng-model='descriptionType'
+                                    value="Image" ng-change="changeMedia()">Image
+                                <input type="radio" class="description-radio" id="description" ng-model='descriptionType'
+                                    value="Video" ng-change="changeMedia()">Video
+                            </div>
+                            <textarea ng-show="descriptionType==='Text'" ng-model='description' class="form-control"></textarea>
+                            <select ng-show="descriptionType==='Video' ||
+                    descriptionType==='Image'"
+                                class="form-control" ng-model="selectedFile">
+                                <option value="" disabled>Select File</option>
+                                <option ng-repeat="media in allMedia" value="{{media}}">{{media.description}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sequence">Sequence</label>
+                            <input type="number" class="form-control" id="sequence" ng-model='sequence' required>
+                        </div>
+                        <div class="form-group">
+                            <label for="alignment">Alignment</label>
+                            <div class="description-type">
+                                <input type="radio" id="alignment" ng-model='alignment' value="Left">Left
+                                <input type="radio" class="alignment-radio-wwa" id="alignment" ng-model='alignment'
+                                    value="Top">Top
+                                <input type="radio" class="alignment-radio-wwa" id="alignment" ng-model='alignment'
+                                    value="Bottom">Bottom
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="active">Active</label>
+                            <div class="description-type">
+                                <input type="radio" id="active" ng-model='isActive' value=true>Active
+                                <input type="radio" class="language-radio" id="active" ng-model='isActive' value=false>InActive
+                            </div>
+                        </div>
+                        <div class="modalbutton">
+                            <button type="submit" class="btn btn-primary" ng-click="saveSection()">Create Section</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="sectionUpdateModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Update Section</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <div class="description-type">
+                                <input class="form-control" type="text" ng-model='sectionData.language' ng-readonly="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Type of description</label>
+                            <div class="description-type">
+                                <input type="radio" id="description" ng-model='sectionData.descriptionType' value="{{sectionData.descriptionType}}">{{sectionData.descriptionType}}
+                            </div>
+                            <textarea ng-show="sectionData.descriptionType==='Text'" ng-model='sectionData.description'
+                                class="form-control"></textarea>
+                            <span ng-show="sectionData.descriptionType==='Video' ||
+                    sectionData.descriptionType==='Image'">
+                                <img ng-show="sectionData.descriptionType==='Image'" ng-src="{{sectionData.description}}"
+                                    alt="Description" width="100px" />
+                                <video ng-show="sectionData.descriptionType==='Video'" ng-src="{{sectionData.description}}"
+                                    width="200px" controls></video>
+                                <button ng-click="changeMediaUpdate()">click here to change</button>
+                                <select ng-show="showMediaChange" class="form-control" ng-model="selectedFile">
+                                    <option value="" disabled>Select File</option>
+                                    <option ng-repeat="media in allMedia" value="{{media}}">{{media.description}}</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="sequence">Sequence</label>
+                            <input type="number" class="form-control" id="sequence" ng-model='sectionData.sequence'
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="alignment">Alignment</label>
+                            <div class="description-type">
+                                <input type="radio" id="alignment" ng-model='sectionData.alignment' value="Left">Left
+                                <input type="radio" class="alignment-radio-wwa" id="alignment" ng-model='sectionData.alignment'
+                                    value="Top">Top
+                                <input type="radio" class="alignment-radio-wwa" id="alignment" ng-model='sectionData.alignment'
+                                    value="Bottom">Bottom
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="active">Active</label>
+                            <div class="description-type">
+                                <input type="radio" id="active" ng-model='sectionData.isActive' ng-value=true>Active
+                                <input type="radio" class="language-radio" id="active" ng-model='sectionData.isActive'
+                                    ng-value=false>InActive
+                            </div>
+                        </div>
+                        <div class="modalbutton">
+                            <button type="submit" class="btn btn-primary" ng-click="updateSection()">Update Section</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

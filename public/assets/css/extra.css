@@ -434,15 +434,6 @@ p {
     width: 800px;
 }
 
-.SectionHead,
-.SectionHead span,
-p.SectionHead {
-    margin-top: 15px;
-    margin-bottom: 10px;
-    color: #6999C9 !important;
-    font-size: 17px !important;
-}
-
 #UNEntities {
     margin: 0;
     padding: 0;
@@ -569,4 +560,27 @@ p.SectionHead {
 .WWABlueP {
     color: #6999C9 !important;
     font-weight: 400;
+}
+
+.iconclass {
+    margin-right: 10px;
+    color: #6999C9;
+}
+
+.bulletlist6 {
+    color: #828689 !important;
+    margin-left: 20px;
+}
+
+.bulletlist6 li {
+    color: #828689 !important;
+    padding: 2px 0 2px 15px;
+}
+
+.careersupportLeftCol {
+    padding-right: 25px;
+}
+
+.paddingclass-nav {
+    padding-right: 10%;
 }

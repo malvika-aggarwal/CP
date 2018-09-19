@@ -2,6 +2,8 @@ var whatwedo = require('../models/whatwedo');
 var goals = require('../models/goals');
 var entity = require('../models/entities');
 var whoweare = require('../models/whoweare');
+var careersupport = require('../models/careerSupport');
+var privacynotice = require('../models/privacyNotice');
 
 exports.fetchWhatWeDo = (req, res) => {
 	var language = 'English';
@@ -67,6 +69,40 @@ exports.fetchWhoWeAre = (req, res) => {
 			res.status(500).send(error.toString());
 		} else {
 			res.status(200).json(whoweare);
+		}
+	})
+};
+
+exports.fetchCareerSupport = (req, res) => {
+	var language = 'English';
+	if (req.query.lang && req.query.lang === 'French') {
+		language = req.query.lang;
+	}
+	careersupport.find({
+		isActive: true,
+		language
+	}).exec((error, careersupport) => {
+		if (error) {
+			res.status(500).send(error.toString());
+		} else {
+			res.status(200).json(careersupport);
+		}
+	})
+};
+
+exports.fetchPrivacyNotice = (req, res) => {
+	var language = 'English';
+	if (req.query.lang && req.query.lang === 'French') {
+		language = req.query.lang;
+	}
+	privacynotice.find({
+		isActive: true,
+		language
+	}).exec((error, privacynotice) => {
+		if (error) {
+			res.status(500).send(error.toString());
+		} else {
+			res.status(200).json(privacynotice);
 		}
 	})
 };
